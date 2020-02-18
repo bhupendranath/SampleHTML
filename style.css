@@ -2,6 +2,10 @@
     #mainmenu ul{
         display: none;
     }
+
+    /*this is comment
+
+    Ending comment*/
 }
 @media (min-width:500px){
     #mainmenu select{
