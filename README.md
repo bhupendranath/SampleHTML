@@ -1,2 +1,56 @@
 # SampleHTML
 Sample HTML code using Jquery Demo.
+
+<!-- dashboardEmbed.html -->
+<template>
+    <lightning-card title="Embedded Dashboard" icon-name="custom:custom14">
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-iframe src={dashboardUrl} width="100%" height="500px"></lightning-iframe>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
+
+
+// dashboardEmbed.js
+import { LightningElement, api, track } from 'lwc';
+
+export default class DashboardEmbed extends LightningElement {
+    @api dashboardId;
+
+    @track
+    get dashboardUrl() {
+        // Construct the URL for your dashboard
+        return `/lightning/r/Dashboard/${this.dashboardId}/view`;
+    }
+}
+
+
+
+<!-- dashboardEmbed.js-meta.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="dashboardEmbed">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <!-- Add other supported targets if needed -->
+    </targets>
+    <targetConfigs>
+        <objects>
+            <!-- Add supported objects if needed -->
+        </objects>
+    </targetConfigs>
+</LightningComponentBundle>
+
+
+<template>
+    <lightning-record-page>
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto">
+                <c-dashboard-embed dashboard-id="your_dashboard_id"></c-dashboard-embed>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-record-page>
+</template>
